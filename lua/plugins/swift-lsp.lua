@@ -1,0 +1,122 @@
+if true then
+  return {}
+end
+
+-- return {
+--   {
+--     "neovim/nvim-lspconfig",
+--     opts = function(_, opts)
+--       opts.servers = opts.servers or {}
+--       opts.servers.sourcekit = {
+--         capabilities = {
+--           workspace = {
+--             didChangeWatchedFiles = {
+--               dynamicRegistration = true,
+--             },
+--           },
+--         },
+--       }
+--       return opts
+--     end,
+--   },
+--
+--   {
+--     "neovim/nvim-lspconfig",
+--     ft = { "swift" },
+--     config = function()
+--       local lspconfig = require("lspconfig")
+--       local util = require("lspconfig.util")
+--
+--       local on_attach = function(client, bufnr)
+--         -- Set up LSP keymaps manually
+--         local opts = { buffer = bufnr, silent = true }
+--
+--         -- Go to definition
+--         vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "Go to Definition" }))
+--
+--         -- Go to declaration
+--         vim.keymap.set(
+--           "n",
+--           "gD",
+--           vim.lsp.buf.declaration,
+--           vim.tbl_extend("force", opts, { desc = "Go to Declaration" })
+--         )
+--
+--         -- Go to implementation
+--         vim.keymap.set(
+--           "n",
+--           "gi",
+--           vim.lsp.buf.implementation,
+--           vim.tbl_extend("force", opts, { desc = "Go to Implementation" })
+--         )
+--
+--         -- Go to type definition
+--         vim.keymap.set(
+--           "n",
+--           "gy",
+--           vim.lsp.buf.type_definition,
+--           vim.tbl_extend("force", opts, { desc = "Go to Type Definition" })
+--         )
+--
+--         -- Show references
+--         vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "Show References" }))
+--
+--         -- Hover documentation
+--         vim.keymap.set("n", "K", vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "Hover Documentation" }))
+--
+--         -- Signature help
+--         vim.keymap.set(
+--           "n",
+--           "gK",
+--           vim.lsp.buf.signature_help,
+--           vim.tbl_extend("force", opts, { desc = "Signature Help" })
+--         )
+--
+--         -- Rename
+--         vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Rename" }))
+--
+--         -- Code action
+--         vim.keymap.set(
+--           { "n", "v" },
+--           "<leader>ca",
+--           vim.lsp.buf.code_action,
+--           vim.tbl_extend("force", opts, { desc = "Code Action" })
+--         )
+--
+--         -- Format
+--         vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+--           vim.lsp.buf.format({ async = true })
+--         end, vim.tbl_extend("force", opts, { desc = "Format" }))
+--
+--         vim.notify("✓ SourceKit-LSP attached with keymaps!", vim.log.levels.INFO)
+--       end
+--
+--       -- Get capabilities
+--       local capabilities = vim.lsp.protocol.make_client_capabilities()
+--
+--       local has_blink, blink = pcall(require, "blink.cmp")
+--       if has_blink then
+--         capabilities = vim.tbl_deep_extend("force", capabilities, blink.get_lsp_capabilities())
+--       end
+--
+--       capabilities.workspace = capabilities.workspace or {}
+--       capabilities.workspace.didChangeWatchedFiles = {
+--         dynamicRegistration = true,
+--       }
+--
+--       lspconfig.sourcekit.setup({
+--         capabilities = capabilities,
+--         on_attach = on_attach,
+--         root_dir = function(fname)
+--           return util.root_pattern("buildServer.json", "*.xcodeproj", "*.xcworkspace")(fname)
+--             or util.root_pattern("Package.swift")(fname)
+--             or util.find_git_ancestor(fname)
+--         end,
+--       })
+--
+--       if vim.bo.filetype == "swift" then
+--         vim.cmd("LspStart sourcekit")
+--       end
+--     end,
+--   },
+-- }
