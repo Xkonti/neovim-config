@@ -1,3 +1,4 @@
+-- Disabled - added by Omarchy
 if true then
   return {}
 end

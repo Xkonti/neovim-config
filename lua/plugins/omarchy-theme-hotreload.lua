@@ -1,3 +1,4 @@
+-- Add only when on Omarchy
 return {
   {
     name = "theme-hotreload",
